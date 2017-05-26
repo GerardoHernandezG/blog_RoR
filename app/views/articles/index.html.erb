@@ -4,9 +4,11 @@
 <div class="col-md-12" style="text-align: left;">
 	<h3><%= link_to "Nuevo Artículo", new_article_path(@article) %></h3>
 </div>
-<% @articles.each do |article| %>
-	<h1><%= link_to article.title, article %></h1>
-	<div>
-		<%= article.body %> - <%= link_to "Eliminar", article, method: :delete, data: { confirm: '¿Deseas eliminar el artículo?' }, class: "red" %>
-	</div>	
-<% end %>
+<div style="text-align: justify; width: 90%">
+	<% @articles.each do |article| %>
+		<h1><%= link_to article.title, article %></h1>
+		<div>
+			<%= article.body %> - <%= link_to "Eliminar", article, method: :delete, data: { confirm: '¿Deseas eliminar el artículo?' }, class: "red" %>
+		</div>	
+	<% end %>
+</div>

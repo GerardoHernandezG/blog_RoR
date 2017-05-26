@@ -1,0 +1,37 @@
+<div style="width: 80%; margin: 0 auto;">
+  <%= form_for([@article, @comment], remote: true, html: { id: "comment-form", :"data-type" => "json"}) do |form| %>
+  <!-- para establecer las rutas, poner el recurso y subrecurso en el form_for -->
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+        <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <!--   <div class="field">  no se ponen para que el usuario no manipule los campos, debe tomar los ids del articulo y usuario que comenta
+      <%= form.label :user_id %>
+      <%= form.text_field :user_id, id: :comment_user_id %>
+    </div>
+
+    <div class="field">
+      <%= form.label :article_id %>
+      <%= form.text_field :article_id, id: :comment_article_id %>
+    </div> -->
+
+    <div class="field">
+      <%= form.label :body, "Comentario: " %>
+      <%= form.text_area :body, id: :comment_body, style: "height: 100px", class: "form-control" %>
+    </div>
+    <br>
+    <div class="actions">
+      <%= form.submit "Crear", class: "btn-submit be-red white" %>
+    </div>
+  <% end %>
+</div>
+
+

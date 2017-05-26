@@ -1,0 +1,50 @@
+<h1><%= @article.title %></h1>
+<% unless @article.user.nil? %>
+<p>
+	<strong>Escrito por:</strong> <%= @article.user.email %>
+</p>
+<% end %>
+<div class="field">
+	<%= image_tag @article.cover.url, :style => "width: 60%" %>
+</div>
+<p>
+	<strong>Visitas:</strong> <%= @article.visits_count %>
+</p>
+<div>
+	<p style="text-align: justify; width: 80%; margin: 0 auto;"><%= @article.body %></p>
+</div>
+<br>
+<div>
+	<%= link_to "Editar Artículo", edit_article_path(@article) %>
+</div>
+<hr>
+<div class="field">
+	<h3>Sección de Comentarios</h3>
+	<%= render "comments/form" %>
+	<ul id="comments-box">
+		<% cont = 0 %>
+		<% @article.comments.each do |comment| %>
+			<li class="li-comment"> <!-- dentro each mostramos los elementos del objeto comment que está iterando a @article.comments -->
+				<%= cont = cont + 1 %>.- <%= comment.body %> - <strong>Escrito por:</strong> <%= comment.user.email %>
+				<%= link_to 'Eliminar', [@article, comment], method: :delete, data: { confirm: '¿Deseas eliminar el comentario?' }, class: "red" %>
+				<br>
+			</li>
+		<% end %>
+	</ul>
+</center>
+</div>
+
+<script>
+
+// $(document).ready(function() {  
+
+//   $("#comment-form").on('ajax:success', function(e) {     
+//      console.log(e);   
+//   });
+// });
+
+// $(document).on("ajax:success", "form#comment-form", function(ev,data){
+// 	console.log(ev);
+// });
+  
+</script>

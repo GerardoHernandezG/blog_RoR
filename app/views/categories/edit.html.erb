@@ -1,6 +1,7 @@
-<h1>Editing Category</h1>
+<h1>Editar Categoría</h1>
+<div style="width: 30%; margin: 0 auto;">
+	<%= render 'form', category: @category %>
 
-<%= render 'form', category: @category %>
-
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
+	<%= link_to 'Mostrar Artículo', @category %> |
+	<%= link_to 'Regresar', categories_path %>
+</div>

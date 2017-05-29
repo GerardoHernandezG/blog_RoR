@@ -11,17 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
+  <div class="field left">
+    <%= form.label :name, "Nombre Categoría: " %>
     <%= form.text_field :name, id: :category_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :color %>
+  <div class="field left">
+    <%= form.label :color, "Color: " %>
     <%= form.color_field :color, id: :category_color %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Crear", class: "btn-submit be-red white large-padding" %>
   </div>
+  <br>
 <% end %>

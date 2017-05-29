@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
 	#get /articles/new
 	def new		
 		@article = Article.new
+		@categories = Category.all
 	end
 	#post /articles
 	def create		
@@ -40,11 +41,12 @@ class ArticlesController < ApplicationController
 		#@article = Article.new(article_params) #crear articulos
 
 		@article = current_user.articles.new(article_params) #crear articulos relacionados con un usuario 
-
+		@article.categories = params[:categories]
+		#raise params.to_yaml
 		#guardar instancia
 		#@article.valid? or @article.invalid? retorna verdadero o falso depende de las validaciones del model
 		if @article.save
-			redirect_to @article
+		 	redirect_to @article
 		else
 			render :new
 		end
@@ -53,7 +55,7 @@ class ArticlesController < ApplicationController
 	def destroy		
 		#para no repetir tanto codigo se hace un callback llamado set_article y ese toma los metodos del codigo repetio en uno solo
 		#@article = Article.find(params[:id])
-		@article.destroy
+		@article.destroy	
 		redirect_to articles_path
 	end
 
@@ -86,6 +88,6 @@ class ArticlesController < ApplicationController
 	end
 
 	def article_params
-		params.require(:article).permit(:title,:body,:cover)
+		params.require(:article).permit(:title,:body,:cover,:categories)
 	end
 end

@@ -46,5 +46,14 @@
 // $(document).on("ajax:success", "form#comment-form", function(ev,data){
 // 	console.log(ev);
 // });
+
+$(function() {
+  $(document).ready(function() {
+  	if(!$(".notice").is(':empty')) {
+	  bootbox.alert("Comentario eliminado") ;
+	}
+    
+  })
+})
   
 </script>

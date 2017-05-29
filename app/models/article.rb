@@ -8,7 +8,7 @@ class Article < ApplicationRecord
 	validates :body, presence: true, length: { minimum: 20 }
 
 	#CATEGORIAS
-	has_many :has_categories
+	has_many :has_categories, dependent: :delete_all
 	has_many :categories, through: :has_categories 
 
 	#establecer contador de visitas igual a 0 antes de crear articulos

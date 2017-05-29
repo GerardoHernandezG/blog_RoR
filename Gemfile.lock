@@ -60,6 +60,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
     bindex (0.5.0)
+    bootbox-rails (0.5.0)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.13.0)
@@ -197,6 +198,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt!
+  bootbox-rails (~> 0.4)
   byebug
   capybara (~> 2.13.0)
   coffee-rails (~> 4.2)

@@ -6,7 +6,7 @@
 
 $(document).on "ajax:success", "form#comment-form", (e) ->
 	e.preventDefault() 	
-	console.log e
+	#console.log e	
 	$(this).find("textarea").val("")
     #$("#comments-box").append("<li> #{e} </li>")
 #  ).on "ajax:error", (e, xhr, status, error) ->

@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
 	#con la funcion before_action, after_action ejecutamos callbacks
 	before_action :set_article, except: [:index, :new,:create]
 	before_action :authenticate_editor!, only: [:new, :create, :update]
-	before_action :authenticate_admin!, only: [:destroy]
+	before_action :authenticate_admin!, only: [:new, :create, :update, :destroy]
 
 	#get /articles
 	def index

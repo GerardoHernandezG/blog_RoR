@@ -1,5 +1,5 @@
 <div style="width: 80%; margin: 0 auto;">
-  <%= form_for([@article, @comment], remote: true, html: { id: "comment-form", :"data-type" => "json"}) do |form| %>
+  <%= form_for([@article, @comment], remote: true, html: { id: "comment-form", :"data-type" => "json",}) do |form| %>
   <!-- para establecer las rutas, poner el recurso y subrecurso en el form_for -->
     <% if @comment.errors.any? %>
       <div id="error_explanation">

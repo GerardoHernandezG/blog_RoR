@@ -31,9 +31,10 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        #raise @comment.to_yaml
         #redirigir al comentario del articulo, si marca error, añadir al objeto @comment el articulo
-        format.html { redirect_to @comment.article, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment.article }
+        format.html { redirect_to @comment.article, notice: 'Comment was successfully created.' }       
+        format.json { render :show, status: :created }        
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }

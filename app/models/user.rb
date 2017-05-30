@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :articles #en esta relacion un usuario puede tener muchos articulo
   has_many :comments #relacionar un usuario con varios comentarios
+  include PermissionsConcern #puedo acceder a los metodos del concern permissions
 end

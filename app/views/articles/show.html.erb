@@ -21,11 +21,12 @@
 <div class="field">
 	<h3>Sección de Comentarios</h3>
 	<%= render "comments/form" %>
+	<br>
 	<ul id="comments-box">
 		<% cont = 0 %>
 		<% @article.comments.each do |comment| %>
 			<li class="li-comment"> <!-- dentro each mostramos los elementos del objeto comment que está iterando a @article.comments -->
-				<%= cont = cont + 1 %>.- <%= comment.body %> - <strong>Escrito por:</strong> <%= comment.user.email %>
+				<% cont = cont + 1 %>- <%= comment.body %> - <strong>Escrito por:</strong> <%= comment.user.email %>
 				<%= link_to 'Eliminar', [@article, comment], method: :delete, data: { confirm: '¿Deseas eliminar el comentario?' }, class: "red" %>
 				<br>
 			</li>
@@ -36,24 +37,13 @@
 
 <script>
 
-// $(document).ready(function() {  
-
-//   $("#comment-form").on('ajax:success', function(e) {     
-//      console.log(e);   
-//   });
-// });
-
-// $(document).on("ajax:success", "form#comment-form", function(ev,data){
-// 	console.log(ev);
-// });
-
-$(function() {
-  $(document).ready(function() {
-  	if(!$(".notice").is(':empty')) {
-	  bootbox.alert("Comentario eliminado") ;
-	}
+// $(function() {
+//   $(document).ready(function() {
+//   	if(!$(".notice").is(':empty')) {
+// 	  bootbox.alert("Comentario eliminado") ;
+// 	}
     
-  })
-})
+//   })
+// })
   
 </script>

@@ -11,7 +11,8 @@
 	<strong>Visitas:</strong> <%= @article.visits_count %>
 </p>
 <div>
-	<p style="text-align: justify; width: 80%; margin: 0 auto;"><%= @article.body %></p>
+	<p style="text-align: justify; width: 80%; margin: 0 auto;"><%= @article.body.html_safe %></p>
+	<!-- se pone html_safe para cuando hay un editor de texto, no muestre el html si no como pagina normal -->
 </div>
 <br>
 <div>
@@ -37,13 +38,13 @@
 
 <script>
 
-// $(function() {
-//   $(document).ready(function() {
-//   	if(!$(".notice").is(':empty')) {
-// 	  bootbox.alert("Comentario eliminado") ;
-// 	}
+$(function() {
+  $(document).ready(function() {
+  	if(!$(".notice").is(':empty')) {
+	  bootbox.alert("Comentario eliminado") ;
+	}
     
-//   })
-// })
+  })
+})
   
 </script>

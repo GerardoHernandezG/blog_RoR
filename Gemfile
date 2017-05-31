@@ -31,6 +31,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
 gem 'paperclip'
 gem 'bootbox-rails', '~>0.4'
+gem 'aasm'
+gem 'will_paginate'
+#gem 'epic-editor-rails' #no hay gema para rails 5, usar repo de abajo 
+gem 'epic-editor-rails', :git => 'https://github.com/GioRosales/epic-editor-rails.git'
 
 
 # Use Capistrano for deployment

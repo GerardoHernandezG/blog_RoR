@@ -1,9 +1,13 @@
 class Article < ApplicationRecord
+
+	#modulo sobre la funcionalidad de aasm independiente de la gema
+	include AASM 
+
 	#metodo para validar campos de formulario a la base de datos
 	#uniqueness es para que no se repita el dato, presence es requerido y lenght para la lingitud de la cadena
 	#se pueden agregar varios atributos en el metodo validates
 	belongs_to :user #con esto hacemos join entre la tabla users y articles
-	has_many :comments
+	has_many :comments, dependent: :delete_all
 	validates :title, presence: true, uniqueness: true
 	validates :body, presence: true, length: { minimum: 20 }
 
@@ -36,14 +40,45 @@ class Article < ApplicationRecord
 	def update_visits_count
 		self.save if self.visits_count.nil? #si el contador es nulo guardar y asignarle 0, si no incrementar en 1
 		self.update(visits_count: self.visits_count + 1)
-	end
+	end	
 
+	scope :publicados, ->{ where(aasm_state: "published") }
+	scope :ultimos, ->{ order("created_at DESC") }
+	#scope :ultimos, ->{ order("created_at DESC").limit(10) }
+	#al declarar un scope, lo nombramos y en el segundo parametro mandamos la condicion del scope
+	#sirven para agrupar condiciones de las consultas
+	#los scopes puede ir encadenados, o sea llamar dos al mismo tiempo desde el controlador, nos sirven para no
+	#utilizar active record desde el controlador, si no mandar llamar los scopes creados en el modelo
+
+	# def self.publicados #metodo de clase
+	# 	Article.where(aasm_state: "published")
+	# end
+	#los dos anteriores son metodos de scopes, pero se utiliza mas el primero
+
+	aasm do
+	    state :in_draft, :initial => true
+	    state :published
+
+	    event :publish do
+	      transitions :from => :in_draft, :to => :published
+	    end	    
+
+	    event :unpublish do
+	      transitions :from => :published, :to => :in_draft
+	    end
+	end
+	#para cambiar de estado a los articulos, en la consola en este caso, hacemos Article.last.publish!
+	#para ver si podriamos cambiar de estado ejecutamos Article.last.publish? que retorna true o false dependiento del estado que esté
+	#en la bd cualquier tabla que ocupe estados se le debe agregar el campo aasm_state
 	private
 
 	def save_category
-		@categories.each do |category_id|
-			HasCategory.create(category_id: category_id, article_id: self.id)
+		unless @categories.nil?
+			@categories.each do |category_id|
+				HasCategory.create(category_id: category_id, article_id: self.id)
+			end
 		end
+		
 	end
 
 	def set_visits_count

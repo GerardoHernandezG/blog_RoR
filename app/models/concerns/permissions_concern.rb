@@ -12,5 +12,5 @@ module PermissionsConcern
 	def is_admin?
 		self.permission_level >= 3
 	end
-	
+	#todos los métodos que retornan un boolean como true o false, van con el signo de interrogacion al final
 end

@@ -6,14 +6,23 @@ class ArticlesController < ApplicationController
 	before_action :validate_user, except: [:show, :index, :edit]
 	#con la funcion before_action, after_action ejecutamos callbacks
 	before_action :set_article, except: [:index, :new,:create]
-	#before_action :authenticate_editor!, only: [:new, :create, :update]
-	#before_action :authenticate_admin!, only: [:new, :create, :update, :destroy]
+	before_action :authenticate_editor!, only: [:new, :create, :update]
+	before_action :authenticate_admin!, only: [:destroy,:publish]
 
 	#get /articles
 	def index
 		#declarar una variable de clase que se puede acceder tanto del controlador como de la vista
-		@articles = Article.all
+		@articles = Article.publicados.ultimos
+		#se incorpora la paginacion de will_paginate modificando el metodo anterior para que quede así
+		@articles = Article.paginate(page: params[:page], per_page:5).publicados.ultimos
+		#el metodo paginate tiene un array de opciones, entre ellos, page y per_page
 	end
+
+	def publish
+		@article.publish!
+		redirect_to @article
+	end
+
 	#get /articles/:id
 	def show		
 		#@article = Article.find(params[:id])
@@ -58,7 +67,7 @@ class ArticlesController < ApplicationController
 		#para no repetir tanto codigo se hace un callback llamado set_article y ese toma los metodos del codigo repetio en uno solo
 		#@article = Article.find(params[:id])
 		@article.destroy	
-		redirect_to articles_path
+		redirect_to root_path
 	end
 
 	def edit		
@@ -73,7 +82,7 @@ class ArticlesController < ApplicationController
 		else
 			render :edit
 		end
-	end
+	end	
 
  	#al definir private, todos los metodos creados despues de private van a ser accesibles solo desde la clase
 	private

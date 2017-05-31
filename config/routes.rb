@@ -19,4 +19,8 @@ Rails.application.routes.draw do
 
   root 'articles#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/dashboard', to: "welcome#dashboard"
+  #si se modifica un recurso ya existente entonces se pone otra ruta con la accion
+  put '/articles/:id/publish', to: "articles#publish"
 end

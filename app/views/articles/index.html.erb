@@ -1,15 +1,19 @@
 <% if user_signed_in? %>
 	<h3 class="left">Bienvenido: <%= current_user.email %></h3>
+	<% if current_user.permission_level == 3 %>
+		<%= link_to "Dashboard", "/dashboard", method: :get, class: "blue" %>
+	<% end %>
 <% end %>
-<h1>Todos los Artículos</h1>
-<div class="col-md-12" style="text-align: left;">
-	<h3><%= link_to "Nuevo Artículo", new_article_path(@article) %></h3>
+<center><h1>Todos los Artículos</h1></center>
+<div class="col-md-12" style="text-align: right;">
+	<h3><%= link_to "Nuevo Artículo", new_article_path(@article), class: "btn btn-success white" %></h3>
 </div>
-<div style="text-align: justify; width: 90%;">
+<div style="text-align: justify; width: 100%;">
 	<% @articles.each do |article| %>
 		<h1><%= link_to article.title, article %></h1>
 		<div>
-			<%= article.body %> - <%= link_to "Eliminar", article, method: :delete, data: { confirm: '¿Deseas eliminar el artículo?' }, class: "red" %>
+			<%= article.body.html_safe %>
 		</div>	
 	<% end %>
 </div>
+<center><%= will_paginate @articles %></center>

@@ -1,0 +1,15 @@
+<center><h1>Administrador de Artículos</h1></center>
+<div class="col-md-12" style="text-align: right;">
+	<h3><%= link_to "Nuevo Artículo", new_article_path(@article), class: "btn btn-success white" %></h3>
+</div>
+<div class="container" style="text-align: justify; width: 90%;">
+	<% @articles.each do |article| %>
+		<h1><%= link_to article.title, article %></h1>
+		<div>
+			<%= article.body.html_safe %> - <%= link_to "Eliminar", article, method: :delete, data: { confirm: '¿Deseas eliminar el artículo?' }, class: "red" %> - 
+		<% if article.in_draft? %>
+			<%= link_to "Publicar", "/articles/#{article.id}/publish", method: :put, class: "blue" %>
+		<% end %>	
+		</div>
+	<% end %>
+</div>

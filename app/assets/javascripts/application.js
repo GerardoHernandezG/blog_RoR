@@ -13,4 +13,5 @@
 //= require turbolinks
 //= require rails-ujs
 //= require bootbox
+//= require epiceditor
 //= require_tree .

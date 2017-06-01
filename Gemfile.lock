@@ -23,13 +23,6 @@ GIT
       responders
       warden (~> 1.2.3)
 
-GIT
-  remote: https://github.com/rubys/nokogumbo.git
-  revision: 19b25fe09da4ddb3d9b89a4b44dba48303143313
-  branch: copy-to-lib
-  specs:
-    nokogumbo (1.4.5)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -124,6 +117,8 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.7.2-x86-mingw32)
       mini_portile2 (~> 2.1.0)
+    nokogumbo (1.4.12)
+      nokogiri
     orm_adapter (0.5.0)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -228,7 +223,6 @@ DEPENDENCIES
   devise!
   epic-editor-rails!
   jbuilder (~> 2.5)
-  nokogumbo (= 1.4.5)!
   paperclip
   pg
   puma (~> 3.7)

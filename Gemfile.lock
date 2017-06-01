@@ -115,7 +115,7 @@ GEM
     minitest (5.10.2)
     multi_json (1.12.1)
     nio4r (2.1.0)
-    nokogiri (1.7.2-x86-mingw32)
+    nokogiri (1.6.8.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
     nokogumbo (1.4.12)
       nokogiri
@@ -223,7 +223,7 @@ DEPENDENCIES
   devise!
   epic-editor-rails!
   jbuilder (~> 2.5)
-  nokogiri (>= 1.6.7.rc)
+  nokogiri (~> 1.6.7.rc)
   paperclip
   pg
   puma (~> 3.7)

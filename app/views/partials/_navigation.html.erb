@@ -2,23 +2,23 @@
 	  	<nav class="be-red white large-padding">
 	  		<ul class="no-list row center-xs middle-xs">
 	  			<li class="col-md">
-	  				<h1 id="logo" class="no-margin"><%= link_to "Blog Gerardo", root_path %></h1>
+	  				<h1 id="logo" class="no-margin"><%= link_to "Blog Gerardo", root_path, class: "link-menu" %></h1>
 	  			</li>
 	  			<% @categories.each do |category| %>
-					<li class="col-md">
-		  				<%= link_to category.name, category %>
+					<li class="col-md col-xs col-sm">
+		  				<%= link_to category.name, category, class: "link-menu" %>
 		  			</li>
 	  			<% end %>	  			
 	  			<% if user_signed_in? %>
-	  				<li class="col-md">
-	  					<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete %>
+	  				<li class="col-md col-xs col-sm">
+	  					<%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: "link-menu" %>
 	  				</li>
-	  				<li class="col-md">
+	  				<li class="col-md col-xs col-sm">
 	  			<% else %>
-	  					<%= link_to "Iniciar Sesión", new_user_session_path %>
+	  					<%= link_to "Iniciar Sesión", new_user_session_path, class: "link-menu" %>
 	  				</li>
-	  				<li class="col-md">
-	  					<%= link_to "Crear Cuenta", new_user_registration_path %>
+	  				<li class="col-md col-xs col-sm">
+	  					<%= link_to "Crear Cuenta", new_user_registration_path, class: "link-menu" %>
 	  				</li>
 	  			<% end %>
 	  		</ul>	  		

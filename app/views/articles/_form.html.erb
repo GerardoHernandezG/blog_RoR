@@ -12,6 +12,7 @@
 		</div>
 		<div class="field">
 			<%= f.hidden_field :body, id: "body-textarea" %>
+			<%= f.hidden_field :markup_body, id: "markup-body-textarea" %>
 		</div>
 		<div id="epiceditor" style="height: 250px"></div>
 		<div class="field" style="text-align: left">
@@ -31,6 +32,7 @@
 
 	$(document).ready(function(){
 		var editor = new EpicEditor({
+			textarea: "markup-body-textarea",
 			file: {
 				name: "nuevo_articulo"
 			}
@@ -39,9 +41,13 @@
 		editor.load();
 
 		$("#articles_form").on("submit", function(){
-			$("#body-textarea").val( editor.exportFile("nuevo_articulo", "html") );
 			/* metodo para pasar el contenido del editor al input que se manda en el form: mas info aqui 
 			http://stacks.math.columbia.edu/js/EpicEditor/#exportfilefilenametype */
+			$("#body-textarea").val( editor.exportFile("nuevo_articulo", "html") );
+
+			/* Si le quitamos el html para exportar lo hace automaticamente en markup*/
+			$("#markup-body-textarea").val( editor.exportFile("nuevo_articulo") );
+			
 		});
 	});
 	

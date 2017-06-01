@@ -20,7 +20,13 @@ Rails.application.routes.draw do
   root 'articles#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get '/dashboard', to: "welcome#dashboard"
+  get '/admin_articles', to: "welcome#admin_articles"
+
+  #administrar usuarios
+  get '/admin_usuarios', to: "users#admin_usuarios"
+  get '/users/:id/edit', to: "users#edit"  
+  resources :users
+
   #si se modifica un recurso ya existente entonces se pone otra ruta con la accion
   put '/articles/:id/publish', to: "articles#publish"
 end

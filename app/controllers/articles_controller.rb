@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
 
 	def publish
 		@article.publish!
-		redirect_to @article
+		redirect_to root_path
 	end
 
 	#get /articles/:id
@@ -99,6 +99,6 @@ class ArticlesController < ApplicationController
 	end
 
 	def article_params
-		params.require(:article).permit(:title,:body,:cover,:categories)
+		params.require(:article).permit(:title,:body,:cover,:categories,:markup_body)
 	end
 end

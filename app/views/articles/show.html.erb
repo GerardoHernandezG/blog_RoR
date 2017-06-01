@@ -1,40 +1,48 @@
-<h1><%= @article.title %></h1>
-<% unless @article.user.nil? %>
-<p>
-	<strong>Escrito por:</strong> <%= @article.user.email %>
-</p>
-<% end %>
-<div class="field">
-	<%= image_tag @article.cover.url, :style => "width: 60%" %>
-</div>
-<p>
-	<strong>Visitas:</strong> <%= @article.visits_count %>
-</p>
-<div>
-	<p style="text-align: justify; width: 80%; margin: 0 auto;"><%= @article.body.html_safe %></p>
-	<!-- se pone html_safe para cuando hay un editor de texto, no muestre el html si no como pagina normal -->
-</div>
-<br>
-<div>
-	<%= link_to "Editar Artículo", edit_article_path(@article) %>
-</div>
-<hr>
-<div class="field">
-	<h3>Sección de Comentarios</h3>
-	<%= render "comments/form" %>
+<center>
+	<h1><%= @article.title %></h1>
+	<div class="field">
+		<!-- Se pueden mandar llamar helpers, en este caso es para imprimir un header donde se requiera, por el momento no lo imprimo -->
+		<% article_cover @article.cover.url %>
+		<%= image_tag @article.cover.url, :style => "width: 60%" %>
+	</div>	
+	<% unless @article.user.nil? %>
+	<p>
+		<strong>Escrito por:</strong> <%= @article.user.email %>
+	</p>
+	<% end %>	
+	<p>
+		<strong>Visitas:</strong> <%= @article.visits_count %>
+	</p>
+	<div style="text-align: justify;">
+		<p style="width: 80%; margin: 0 auto;"><%= Sanitize.fragment(@article.body, Sanitize::Config::RELAXED).html_safe %></p>
+		<!-- se pone html_safe para cuando hay un editor de texto, no muestre el html si no como pagina normal -->
+	</div>
 	<br>
-	<ul id="comments-box">
-		<% cont = 0 %>
-		<% @article.comments.each do |comment| %>
-			<li class="li-comment"> <!-- dentro each mostramos los elementos del objeto comment que está iterando a @article.comments -->
-				<% cont = cont + 1 %>- <%= comment.body %> - <strong>Escrito por:</strong> <%= comment.user.email %>
-				<%= link_to 'Eliminar', [@article, comment], method: :delete, data: { confirm: '¿Deseas eliminar el comentario?' }, class: "red" %>
-				<br>
-			</li>
-		<% end %>
-	</ul>
+	<% if user_signed_in? %>		
+		<% if current_user.permission_level == 3 %>
+		<div>
+			<%= link_to "Editar Artículo", edit_article_path(@article) %>
+		</div>			
+		<% end %>		
+	<% end %>	
+	<hr>
+	<div class="field">
+		<h3>Sección de Comentarios</h3>
+		<%= render "comments/form" %>
+		<br>
+		<ul id="comments-box">
+			<% cont = 0 %>
+			<% @article.comments.each do |comment| %>
+				<li class="li-comment"> <!-- dentro each mostramos los elementos del objeto comment que está iterando a @article.comments -->
+					<% cont = cont + 1 %>- <%= comment.body %> - <strong>Escrito por:</strong> <%= comment.user.email %>
+					<%= link_to 'Eliminar', [@article, comment], method: :delete, data: { confirm: '¿Deseas eliminar el comentario?' }, class: "red" %>
+					<br>
+				</li>
+			<% end %>
+		</ul>
+	</center>
+	</div>
 </center>
-</div>
 
 <script>
 

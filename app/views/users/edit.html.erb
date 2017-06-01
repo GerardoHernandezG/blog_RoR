@@ -1,0 +1,31 @@
+<div style="width: 80%; margin: 0 auto;">
+	<h1>Editar Usuario</h1>
+	<%= form_for(@user, html: {id: "user_form"}) do |form| %>
+	  <% if @user.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+	      <ul>
+	      <% @user.errors.full_messages.each do |message| %>
+	        <li><%= message %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+
+	  <div class="field left">
+	    <%= form.label :email, "Usuario: " %>
+	    <%= form.text_field :email, id: :user_email %>
+	  </div>
+
+	  <div class="field left">
+	    <%= form.label :permission_level, "Nivel de Permiso: " %>
+	    <%= form.text_field :permission_level, id: :user_permission_level %>
+	  </div>
+
+	  <div class="actions">
+	    <%= form.submit "Guardar", class: "btn-submit be-red white large-padding" %>
+	  </div>
+	  <br>
+	<% end %>
+</div>

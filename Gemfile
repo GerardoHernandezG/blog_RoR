@@ -37,7 +37,7 @@ gem 'will_paginate'
 gem 'epic-editor-rails', :git => 'https://github.com/GioRosales/epic-editor-rails.git'
 gem 'sanitize'
 
-
+gem 'nokogumbo', '1.4.5', github: 'rubys/nokogumbo', branch: 'copy-to-lib'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

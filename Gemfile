@@ -36,7 +36,6 @@ gem 'will_paginate'
 #gem 'epic-editor-rails' #no hay gema para rails 5, usar repo de abajo 
 gem 'epic-editor-rails', :git => 'https://github.com/GioRosales/epic-editor-rails.git'
 gem 'sanitize'
-gem "nokogiri", '~> 1.6.7.rc'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -58,6 +57,7 @@ end
 
 group :production do
   gem 'pg'
+  gem "nokogiri", '~> 1.6.7.rc'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -57,7 +57,7 @@ end
 
 group :production do
   gem 'pg'
-  gem "nokogiri", '~> 1.6.7.rc'
+  #gem "nokogiri", '~> 1.6.7.rc'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

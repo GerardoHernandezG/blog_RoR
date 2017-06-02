@@ -1,8 +1,8 @@
 <div class="col-md-4 top-space">
 <h1><%= link_to article.title, article %></h1>
 <%= article_cover article.cover.url %>
-	<div class="box relative article-height">	 
-		<div style="text-align: justify;" class="absolute article-height">
+	<div class="box relative article-height" style="text-align: justify; padding-top: 0px">	 
+		<div style="text-align: justify; padding-top: 0px" class="absolute">
 			<p>			     
 				 <% #Sanitize.fragment(truncate(article.body, length: 50, escape: false), Sanitize::Config::RELAXED).html_safe %>
 				 <%# Sanitize.fragment(article.body, :tags=>[]).truncate(40, :separator => " ").html_safe %>

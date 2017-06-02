@@ -223,7 +223,7 @@ DEPENDENCIES
   devise!
   epic-editor-rails!
   jbuilder (~> 2.5)
-  nokogiri (~> 1.6.7.rc)
+  nokogiri (~> 1.6.7)
   paperclip
   pg
   puma (~> 3.7)

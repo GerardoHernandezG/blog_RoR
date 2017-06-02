@@ -14,7 +14,8 @@
 		<strong>Visitas:</strong> <%= @article.visits_count %>
 	</p>
 	<div style="text-align: justify;">
-		<p style="width: 80%; margin: 0 auto;"><%= Sanitize.fragment(@article.body, Sanitize::Config::RELAXED).html_safe %></p>
+		<!-- Aqui va con el sanitize -->
+		<p style="width: 80%; margin: 0 auto;"><%= @article.body.html_safe %></p>
 		<!-- se pone html_safe para cuando hay un editor de texto, no muestre el html si no como pagina normal -->
 	</div>
 	<br>

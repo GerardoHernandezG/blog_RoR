@@ -4,8 +4,9 @@
 	<div class="box relative article-height">	 
 		<div style="text-align: justify;" class="absolute article-height">
 			<p>			     
-				 <% Sanitize.fragment(truncate(article.body, length: 50, escape: false), Sanitize::Config::RELAXED).html_safe %>
-				 <%= Sanitize.fragment(article.body, :tags=>[]).truncate(40, :separator => " ").html_safe %>
+				 <% #Sanitize.fragment(truncate(article.body, length: 50, escape: false), Sanitize::Config::RELAXED).html_safe %>
+				 <%# Sanitize.fragment(article.body, :tags=>[]).truncate(40, :separator => " ").html_safe %>
+				 <%= article.body.html_safe %>
 				<!-- Sanitize evita que se ejecute cierto codigo para mostrar en la pagina, en este caso que no ejecute scripts -->
 			</p>
 		</div>

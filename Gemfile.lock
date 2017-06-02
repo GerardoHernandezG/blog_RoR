@@ -92,7 +92,6 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    crass (1.0.2)
     erubi (1.6.0)
     execjs (2.7.0)
     ffi (1.9.18-x86-mingw32)
@@ -117,8 +116,6 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.6.8.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
-    nokogumbo (1.4.12)
-      nokogiri
     orm_adapter (0.5.0)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -160,10 +157,6 @@ GEM
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
     rubyzip (1.2.1)
-    sanitize (4.4.0)
-      crass (~> 1.0.2)
-      nokogiri (>= 1.4.4)
-      nokogumbo (~> 1.4.1)
     sass (3.4.24)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -223,12 +216,10 @@ DEPENDENCIES
   devise!
   epic-editor-rails!
   jbuilder (~> 2.5)
-  nokogiri (~> 1.6.7)
   paperclip
   pg
   puma (~> 3.7)
   rails (~> 5.1.0)
-  sanitize
   sass-rails (~> 5.0)
   selenium-webdriver
   sqlite3

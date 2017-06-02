@@ -35,8 +35,7 @@ gem 'aasm'
 gem 'will_paginate'
 #gem 'epic-editor-rails' #no hay gema para rails 5, usar repo de abajo 
 gem 'epic-editor-rails', :git => 'https://github.com/GioRosales/epic-editor-rails.git'
-gem 'sanitize'
-gem "nokogiri", '~> 1.6.7'
+#gem 'sanitize'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

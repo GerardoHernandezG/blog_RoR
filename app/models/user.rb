@@ -1,9 +1,7 @@
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+class User < ApplicationRecord 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :articles #en esta relacion un usuario puede tener muchos articulo
-  has_many :comments #relacionar un usuario con varios comentarios
-  include PermissionsConcern #puedo acceder a los metodos del concern permissions
+  has_many :articles 
+  has_many :comments 
+  include PermissionsConcern 
 end

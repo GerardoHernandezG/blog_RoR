@@ -3,9 +3,6 @@ class Article < ApplicationRecord
 	#modulo sobre la funcionalidad de aasm independiente de la gema
 	include AASM 
 
-	#metodo para validar campos de formulario a la base de datos
-	#uniqueness es para que no se repita el dato, presence es requerido y lenght para la lingitud de la cadena
-	#se pueden agregar varios atributos en el metodo validates
 	belongs_to :user #con esto hacemos join entre la tabla users y articles
 	has_many :comments, dependent: :delete_all
 	validates :title, presence: true, uniqueness: true
@@ -15,12 +12,8 @@ class Article < ApplicationRecord
 	has_many :has_categories, dependent: :delete_all
 	has_many :categories, through: :has_categories 
 
-	#establecer contador de visitas igual a 0 antes de crear articulos
-	#before_create :set_visits_count
-
 	#has_attached_file :cover, styles: { medium: "1280x720", thumb:"800x600" }
 	has_attached_file :cover
-	#para configurar las imagenes adjuntas
 
 	validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
 	#para subir archivos que solo los usuarios esperan que se suban
@@ -28,32 +21,19 @@ class Article < ApplicationRecord
 	before_save :set_visits_count #para validar cuando el contador de visitas sea nulo, si no hay nulos, usar el before_create sin validacion
 	after_create :save_category
 
-	#before_save, before_validation
-
-	#attr_reader :categories
-
 	#Custom setter, método que me permite asignar un valor al atributo de un objeto
 	def categories=(value)
 		@categories = value
 	end
 
 	def update_visits_count
-		self.save if self.visits_count.nil? #si el contador es nulo guardar y asignarle 0, si no incrementar en 1
+		self.save if self.visits_count.nil? 
 		self.update(visits_count: self.visits_count + 1)
 	end	
 
 	scope :publicados, ->{ where(aasm_state: "published") }
 	scope :ultimos, ->{ order("created_at DESC") }
-	#scope :ultimos, ->{ order("created_at DESC").limit(10) }
-	#al declarar un scope, lo nombramos y en el segundo parametro mandamos la condicion del scope
-	#sirven para agrupar condiciones de las consultas
-	#los scopes puede ir encadenados, o sea llamar dos al mismo tiempo desde el controlador, nos sirven para no
-	#utilizar active record desde el controlador, si no mandar llamar los scopes creados en el modelo
-
-	# def self.publicados #metodo de clase
-	# 	Article.where(aasm_state: "published")
-	# end
-	#los dos anteriores son metodos de scopes, pero se utiliza mas el primero
+	#scope :ultimos, ->{ order("created_at DESC").limit(10) }	
 
 	aasm do
 	    state :in_draft, :initial => true
@@ -67,9 +47,7 @@ class Article < ApplicationRecord
 	      transitions :from => :published, :to => :in_draft
 	    end
 	end
-	#para cambiar de estado a los articulos, en la consola en este caso, hacemos Article.last.publish!
-	#para ver si podriamos cambiar de estado ejecutamos Article.last.publish? que retorna true o false dependiento del estado que esté
-	#en la bd cualquier tabla que ocupe estados se le debe agregar el campo aasm_state
+	
 	private
 
 	def save_category
@@ -82,7 +60,6 @@ class Article < ApplicationRecord
 	end
 
 	def set_visits_count
-		self.visits_count ||= 0
-		#|| operador or con el =, si el valor es nulo, asignar 0 si no no hacer nada
+		self.visits_count ||= 0	
 	end
 end

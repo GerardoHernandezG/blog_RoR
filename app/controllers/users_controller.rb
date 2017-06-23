@@ -1,11 +1,19 @@
 class UsersController < ApplicationController
 	
   before_action :set_user, only: [:edit]
+  skip_before_action :verify_authenticity_token
   def index
   end
 
   def admin_usuarios
   	@user = User.all
+  end
+
+  def load_github    
+  end
+
+  def login_github
+    Github.new basic_auth: 'GerardoHernandezG:Odrare2789.'
   end
 
   def edit  	

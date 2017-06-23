@@ -5,7 +5,7 @@ development:
   timeout: 5000
   host: localhost
   username: postgres
-  password: 123456
+  password: 123456789
   port: 5432
 
 test:
@@ -15,7 +15,7 @@ test:
   timeout: 5000
   host: localhost
   username: postgres
-  password: 123456
+  password: 123456789
   port: 5432
 
 production:
@@ -25,5 +25,5 @@ production:
   timeout: 5000
   username: postgres
   host: localhost
-  password: 123456
+  password: 123456789
   port: 5432

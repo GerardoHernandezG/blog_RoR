@@ -30,12 +30,14 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 gem 'bootbox-rails', '~>0.4'
 gem 'aasm'
 gem 'will_paginate'
 #gem 'epic-editor-rails' #no hay gema para rails 5, usar repo de abajo 
 gem 'epic-editor-rails', :git => 'https://github.com/GioRosales/epic-editor-rails.git'
 #gem 'sanitize'
+gem "github_api"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

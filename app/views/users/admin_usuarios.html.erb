@@ -1,4 +1,5 @@
 <h1>Usuarios</h1>
+<%= link_to "Conectar a Git Hub", "/load_github", method: :get, class: "blue" %>
 <% cont = 0 %>
 <% @user.each do |user| %>
 		<h3><%= cont = cont + 1 %>.- <%= user.email %></h3> - <%= link_to "Editar", "/users/#{user.id}/edit", method: :get, class: "blue" %>

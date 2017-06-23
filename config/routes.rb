@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   #administrar usuarios
   get '/admin_usuarios', to: "users#admin_usuarios"
   get '/users/:id/edit', to: "users#edit"  
+  get '/load_github', to: "users#load_github"
+  post '/login_github', to: "users#login_github"
   resources :users
 
   #si se modifica un recurso ya existente entonces se pone otra ruta con la accion

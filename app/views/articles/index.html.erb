@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
 	<h3 class="left">Bienvenido: <%= current_user.email %></h3>
-	<% if current_user.permission_level == 1 %>
+	<% if current_user.permission_level == 3 %>
 		<%= link_to "Administrar Artículos", "/admin_articles", method: :get, class: "blue" %> -
 		<%= link_to "Usuarios", "/admin_usuarios", method: :get, class: "blue" %>
 	<% end %>

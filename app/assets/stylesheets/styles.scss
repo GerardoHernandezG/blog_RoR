@@ -120,3 +120,11 @@ li {
  table, th, td {
    border: 1px solid black;
 }
+
+.cortar{
+    width:350px;   
+    font-size:18pt;
+    overflow:hidden;
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+}

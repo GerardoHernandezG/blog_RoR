@@ -12,8 +12,18 @@ class Article < ApplicationRecord
 	has_many :has_categories, dependent: :delete_all
 	has_many :categories, through: :has_categories 
 
-	#has_attached_file :cover, styles: { medium: "1280x720", thumb:"800x600" }
-	has_attached_file :cover
+	has_attached_file :cover, :styles => { medium: "1280x720", thumb:"800x600" },
+                      :default_url => "/images/:style/missing.png",
+                      :url  => ":s3_domain_url",
+                      :path => "public/images/:id/:style_:basename.:extension",
+                      :storage => :fog,
+                      :fog_credentials => {
+                         provider: 'AWS',
+                         aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+                         aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+                         region: 'us-east-2'
+                      },
+                      fog_directory: ENV["FOG_DIRECTORY"]
 
 	validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
 	#para subir archivos que solo los usuarios esperan que se suban
